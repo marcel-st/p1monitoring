@@ -1,5 +1,4 @@
-## P1 Monitor zabbix script
-## Version 0.1 (21/02/2021)
+## P1 Monitor Zabbix script
 ##
 ## Written by Marcel Stangenberger
 ## For usage with P1 Monitor by Security Brother
@@ -12,20 +11,22 @@ BIN=/usr/bin/wget
 $BIN -q -O $TMP $API
 
 case $2 in
-   production)
-      cat $TMP | cut -f 10 -d ","
-   ;;
-   consumption)
-      cat $TMP | cut -f 9 -d ","
-   ;;
-   *)
-      echo "This script is suppossed to be called from a Zabbix template"
-      echo "Manual operation is possible though"
-      echo "usage : $0 <P1 IP> (production/comsumption)"
-      echo
-      exit 1
-   ;;
+	production)
+		$BIN -q -O $TMP $API
+		cat $TMP | cut -f 10 -d ","
+		rm -f $TMP
+	;;
+	consumption)
+		$BIN -q -O $TMP $API
+		cat $TMP | cut -f 9 -d ","
+		rm -f $TMP
+	;;
+	*)
+		echo "This script is suppossed to be called from a Zabbix template"
+		echo "Manual operation is possible though"
+		echo "usage : $0 <P1 IP> (production/comsumption)"
+		echo
+	;;
 esac
 
-rm -f $TMP
 exit 0
