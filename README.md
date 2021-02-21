@@ -17,8 +17,7 @@ done, you can add a graph to your dashboard if you like. :-)
 
 ![screenshot](./screenshot.png "Screenshot")
 
+## Please note
 
-
-## Todo
-- add gas consumption
-- add water consumption
+i don't have a watermeter (yet!) so i couldn't test the functionality.
+If it doesn't work please send me the API out you're recieving.

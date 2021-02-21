@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.2'
-  date: '2021-02-21T14:44:35Z'
+  date: '2021-02-21T18:27:52Z'
   groups:
     -
       name: 'App templates'
@@ -13,9 +13,13 @@ zabbix_export:
           name: 'App templates'
       applications:
         -
+          name: 'Gas usage'
+        -
           name: 'Power consumption'
         -
           name: 'Power production'
+        -
+          name: 'Water usage'
       items:
         -
           name: 'P1 Monitor Power consumption'
@@ -28,6 +32,16 @@ zabbix_export:
             -
               name: 'Power consumption'
         -
+          name: 'P1 Monitor Gas usage'
+          type: EXTERNAL
+          key: 'p1mon.sh["{HOST.CONN}",gas]'
+          delay: 10m
+          trends: 90d
+          units: m3
+          applications:
+            -
+              name: 'Gas usage'
+        -
           name: 'P1 Monitor Power production'
           type: EXTERNAL
           key: 'p1mon.sh["{HOST.CONN}",production]'
@@ -37,7 +51,27 @@ zabbix_export:
           applications:
             -
               name: 'Power production'
+        -
+          name: 'P1 Monitor Water consumption'
+          type: EXTERNAL
+          key: 'p1mon.sh["{HOST.CONN}",water]'
+          delay: 5m
+          trends: 90d
+          units: liter
+          applications:
+            -
+              name: 'Water usage'
   graphs:
+    -
+      name: 'P1 Monitor gas usage'
+      height: '400'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 199C0D
+          item:
+            host: P1Monitor
+            key: 'p1mon.sh["{HOST.CONN}",gas]'
     -
       name: 'P1 Monitor power usage'
       height: '400'
@@ -56,3 +90,13 @@ zabbix_export:
           item:
             host: P1Monitor
             key: 'p1mon.sh["{HOST.CONN}",production]'
+    -
+      name: 'P1 Monitor water usage'
+      height: '400'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 199C0D
+          item:
+            host: P1Monitor
+            key: 'p1mon.sh["{HOST.CONN}",water]'
