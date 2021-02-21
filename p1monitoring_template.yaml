@@ -1,0 +1,58 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-02-21T14:44:35Z'
+  groups:
+    -
+      name: 'App templates'
+  templates:
+    -
+      template: P1Monitor
+      name: P1Monitor
+      groups:
+        -
+          name: 'App templates'
+      applications:
+        -
+          name: 'Power consumption'
+        -
+          name: 'Power production'
+      items:
+        -
+          name: 'P1 Monitor Power consumption'
+          type: EXTERNAL
+          key: 'p1mon.sh["{HOST.CONN}",consumption]'
+          delay: 10s
+          trends: 90d
+          units: kW
+          applications:
+            -
+              name: 'Power consumption'
+        -
+          name: 'P1 Monitor Power production'
+          type: EXTERNAL
+          key: 'p1mon.sh["{HOST.CONN}",production]'
+          delay: 10s
+          trends: 90d
+          units: kW
+          applications:
+            -
+              name: 'Power production'
+  graphs:
+    -
+      name: 'P1 Monitor power usage'
+      height: '400'
+      show_work_period: 'NO'
+      show_triggers: 'NO'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 199C0D
+          item:
+            host: P1Monitor
+            key: 'p1mon.sh["{HOST.CONN}",consumption]'
+        -
+          sortorder: '2'
+          color: F63100
+          item:
+            host: P1Monitor
+            key: 'p1mon.sh["{HOST.CONN}",production]'
