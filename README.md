@@ -15,5 +15,5 @@ For more information about Zabbix go to : https://www.zabbix.com/
 done, you can add a graph to your dashboard if you like. :-)
 
 ## Todo
-- add gas comsumption
+- add gas consumption
 - add water consumption
