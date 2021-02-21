@@ -15,6 +15,10 @@ For more information about the required software
 
 done, you can add a graph to your dashboard if you like. :-)
 
+![screenshot](./screenshot.png "Screenshot")
+
+
+
 ## Todo
 - add gas consumption
 - add water consumption
