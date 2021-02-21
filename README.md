@@ -2,8 +2,9 @@
 
 This is a template and script for monitoring your power consumption and production with a P1 Monitor installation.
 
-For more information about P1 Monitor go to : https://www.ztatz.nl/
-For more information about Zabbix go to : https://www.zabbix.com/
+For more information about the required software
+- [P1 Monitor](https://www.ztatz.nl/)
+- [Zabbix](https://www.zabbix.com/)
 
 ## Installation
 
