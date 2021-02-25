@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.2'
-  date: '2021-02-21T18:27:52Z'
+  date: '2021-02-25T11:31:52Z'
   groups:
     -
       name: 'App templates'
@@ -17,50 +17,68 @@ zabbix_export:
         -
           name: 'Power consumption'
         -
+          name: 'Power generation'
+        -
           name: 'Power production'
         -
           name: 'Water usage'
       items:
         -
-          name: 'P1 Monitor Power consumption'
+          name: 'Energy consumption'
           type: EXTERNAL
           key: 'p1mon.sh["{HOST.CONN}",consumption]'
           delay: 10s
           trends: 90d
-          units: kW
+          value_type: FLOAT
+          units: W
           applications:
             -
               name: 'Power consumption'
         -
-          name: 'P1 Monitor Gas usage'
+          name: 'Gas consumption'
           type: EXTERNAL
           key: 'p1mon.sh["{HOST.CONN}",gas]'
-          delay: 10m
-          trends: 90d
-          units: m3
+          delay: 10s
+          value_type: FLOAT
           applications:
             -
               name: 'Gas usage'
         -
-          name: 'P1 Monitor Power production'
+          name: 'Energy generation'
+          type: EXTERNAL
+          key: 'p1mon.sh["{HOST.CONN}",generation,"{$SOLAR_ID}","{$SOLAR_KEY}"]'
+          delay: 5m
+          value_type: FLOAT
+          units: W
+          applications:
+            -
+              name: 'Power generation'
+        -
+          name: 'Energy surplus'
           type: EXTERNAL
           key: 'p1mon.sh["{HOST.CONN}",production]'
           delay: 10s
           trends: 90d
-          units: kW
+          units: W
           applications:
             -
               name: 'Power production'
         -
-          name: 'P1 Monitor Water consumption'
+          name: 'Water consumption'
           type: EXTERNAL
           key: 'p1mon.sh["{HOST.CONN}",water]'
           delay: 5m
           trends: 90d
+          value_type: FLOAT
           units: liter
           applications:
             -
               name: 'Water usage'
+      macros:
+        -
+          macro: '{$SOLAR_ID}'
+        -
+          macro: '{$SOLAR_KEY}'
   graphs:
     -
       name: 'P1 Monitor gas usage'
